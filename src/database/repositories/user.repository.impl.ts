@@ -14,7 +14,7 @@ export class UserRepositoryImpl implements UserRepository {
     return this.repository.findOneBy({ email });
   }
   findById(id: number): Promise<User> {
-    return this.repository.findOneBy({id,});
+    return this.repository.findOneBy({ id });
   }
   findAll(): Promise<User[]> {
     return this.repository.find();
@@ -23,11 +23,11 @@ export class UserRepositoryImpl implements UserRepository {
     return this.repository.save(user);
   }
   async updateUser(id: number, user: User): Promise<User> {
-    await this.repository.update({id}, user);
+    await this.repository.update({ id }, user);
     const result = await this.findById(id);
     return result;
   }
- async delete(id: number): Promise<void> {
-    await this.repository.delete({id});
+  async delete(id: number): Promise<void> {
+    await this.repository.delete({ id });
   }
 }

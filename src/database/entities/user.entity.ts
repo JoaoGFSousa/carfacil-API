@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
 import { Vehicle } from './vehicle.entity';
+import { BaseEntity } from './base-entity';
 
 @Entity({ name: 'users' })
 export class User extends BaseEntity {
@@ -12,6 +13,6 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @OneToMany(() => Vehicle, (Vehicle) => Vehicle.user)
+  @OneToMany(() => Vehicle, (vehicle) => vehicle.user)
   vehicles: Vehicle[];
 }

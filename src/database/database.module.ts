@@ -25,15 +25,15 @@ import { UserRepositoryImpl } from './repositories/user.repository.impl';
     }),
     TypeOrmModule.forFeature([User, Vehicle]),
   ],
-  providers:[
+  providers: [
     {
       provide: VehicleRepository,
       useClass: VehicleRepositoryImpl,
     },
     {
       provide: UserRepository,
-      useClass:UserRepositoryImpl,
-    }
-  ]
+      useClass: UserRepositoryImpl,
+    },
+  ],
 })
 export class DatabaseModule {}
