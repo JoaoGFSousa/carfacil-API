@@ -1,4 +1,4 @@
-import { Module} from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { VehicleService } from './services/contracts/vehicle.service';
 import { VehiclesController } from './controller/vehicles.controller';
 import { VehicleServiceImpl } from './services/vehicle.service.impl';
@@ -12,9 +12,9 @@ import { FileUploadService } from './services/contracts/file.upload.service';
       useClass: VehicleServiceImpl,
     },
     {
-        provide:FileUploadService,
-        useClass:FileUploadServiceImpl,
-    }
+      provide: FileUploadService,
+      useClass: FileUploadServiceImpl,
+    },
   ],
   controllers: [VehiclesController],
 })
