@@ -6,7 +6,7 @@ import { User } from './user.entity';
 export class Vehicle extends BaseEntity {
   @Column()
   category: string;
-  '';
+
   @Column()
   ano: number;
 
@@ -26,9 +26,13 @@ export class Vehicle extends BaseEntity {
   combustivel: string;
 
   @Column()
-  img: string;
+  image: string;
+
+  @Column()
+  price: number;
 
   @ManyToOne(() => User, (user) => user.vehicles)
   @JoinColumn()
   user: User;
+  name: any;
 }
