@@ -35,5 +35,6 @@ import { UserRepositoryImpl } from './repositories/user.repository.impl';
       useClass: UserRepositoryImpl,
     },
   ],
+  exports:[UserRepository,VehicleRepository],
 })
 export class DatabaseModule {}
