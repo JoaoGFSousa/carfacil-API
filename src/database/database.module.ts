@@ -7,6 +7,8 @@ import { VehicleRepository } from './repositories/contracts/vehicle.repository';
 import { VehicleRepositoryImpl } from './repositories/vehicle.repository.impl';
 import { UserRepository } from './repositories/contracts/user.repository';
 import { UserRepositoryImpl } from './repositories/user.repository.impl';
+import { Order } from './entities/order.entity';
+import { OrderItem } from './entities/orderItem.entity';
 @Global()
 @Module({
   imports: [
@@ -23,7 +25,7 @@ import { UserRepositoryImpl } from './repositories/user.repository.impl';
       entities: [__dirname.concat('/entities/*.entity{.ts,.js}')],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User, Vehicle]),
+    TypeOrmModule.forFeature([User, Vehicle, Order, OrderItem]),
   ],
   providers: [
     {
@@ -35,6 +37,6 @@ import { UserRepositoryImpl } from './repositories/user.repository.impl';
       useClass: UserRepositoryImpl,
     },
   ],
-  exports:[UserRepository,VehicleRepository],
+  exports: [UserRepository, VehicleRepository],
 })
 export class DatabaseModule {}

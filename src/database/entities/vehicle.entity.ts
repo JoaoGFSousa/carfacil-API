@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { BaseEntity } from './base-entity';
 import { User } from './user.entity';
+import { OrderItem } from './orderItem.entity';
 
 @Entity({ name: 'vehicles' })
 export class Vehicle extends BaseEntity {
@@ -34,5 +35,7 @@ export class Vehicle extends BaseEntity {
   @ManyToOne(() => User, (user) => user.vehicles)
   @JoinColumn()
   user: User;
-  name: any;
+
+  @OneToMany(() => OrderItem, (OrderItems) => OrderItems.vehicle)
+  orderItems: OrderItem;
 }
