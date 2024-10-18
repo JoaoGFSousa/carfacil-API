@@ -6,9 +6,6 @@ import { BaseEntity } from './base-entity';
 @Entity({ name: 'orders' })
 export class Order extends BaseEntity {
   @Column()
-  userId: number;
-
-  @Column()
   totalPrice: number;
 
   @Column()

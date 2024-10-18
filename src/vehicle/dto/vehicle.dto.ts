@@ -27,7 +27,7 @@ export class VehicleDto {
     this.image = vehicle.image;
     if (vehicle.image) {
       this.imageUrl = `http://127.0.0.1:3000/${vehicle.image.replace('public/', '')}`;
-      this.price = vehicle.price;
+      this.price = vehicle.preco;
     }
   }
 }

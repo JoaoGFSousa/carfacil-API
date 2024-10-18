@@ -9,12 +9,6 @@ export class OrderItem extends BaseEntity {
   id: number;
 
   @Column()
-  orderId: number;
-
-  @Column()
-  productId: number;
-
-  @Column()
   unitPrice: number;
 
   @Column()
