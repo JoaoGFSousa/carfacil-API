@@ -30,7 +30,10 @@ export class Vehicle extends BaseEntity {
   image: string;
 
   @Column()
-  price: number;
+  preco: number;
+
+  @Column()
+  description: string;
 
   @ManyToOne(() => User, (user) => user.vehicles)
   @JoinColumn()
