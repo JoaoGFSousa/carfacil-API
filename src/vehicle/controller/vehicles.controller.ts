@@ -10,7 +10,6 @@ import {
   Post,
   Put,
   Req,
-  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -22,11 +21,14 @@ import { UpdateVehicleDto } from '../dto/update.vehicle.dto';
 import { Arr } from 'src/shared/utils/arr';
 import { JwtAuth } from 'src/shared/decorators/jwt.auth';
 import { BodyValidated } from 'src/shared/decorators/body.validated';
+import { FileUploadService } from '../services/contracts/file.upload.service';
 
 @Controller('/v1/vehicles')
 export class VehiclesController {
-  uploadFileService: any;
-  constructor(@Inject() private readonly vehicleService: VehicleService) {}
+  constructor(
+    @Inject() private readonly vehicleService: VehicleService,
+    @Inject() private readonly uploadFileService: FileUploadService,
+  ) {}
 
   @Get()
   @HttpCode(HttpStatus.OK)

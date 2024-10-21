@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { OrderService } from './contracts/order.service';
 import { OrderRepository } from 'src/database/repositories/contracts/order.repository';
 import { CreateOrderDto } from '../dto/create.order.dto';
@@ -37,5 +37,18 @@ export class OrderServiceImpl implements OrderService {
     order.totalPrice = totalPrice;
     order.orderItems = orderItems;
     return this.orderRepository.create(order);
+  }
+
+  async getById(id: number): Promise<Order> {
+    const order = await this.orderRepository.findById(id);
+
+    if (!order) throw new NotFoundException('Order não encontrado');
+
+    return order;
+  }
+
+  async deleteOrder(id: number): Promise<void> {
+    await this.getById(id);
+    await this.orderRepository.delete(id);
   }
 }

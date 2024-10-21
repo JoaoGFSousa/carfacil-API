@@ -4,6 +4,8 @@ import { VehiclesController } from './controller/vehicles.controller';
 import { VehicleServiceImpl } from './services/vehicle.service.impl';
 import { FileUploadServiceImpl } from './services/file.upload.service.impl';
 import { FileUploadService } from './services/contracts/file.upload.service';
+import { OrderService } from './services/contracts/order.service';
+import { OrderServiceImpl } from './services/order.service.impl';
 
 @Module({
   providers: [
@@ -14,6 +16,10 @@ import { FileUploadService } from './services/contracts/file.upload.service';
     {
       provide: FileUploadService,
       useClass: FileUploadServiceImpl,
+    },
+    {
+      provide: OrderService,
+      useClass: OrderServiceImpl,
     },
   ],
   controllers: [VehiclesController],
