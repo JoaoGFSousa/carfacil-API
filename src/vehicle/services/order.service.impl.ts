@@ -25,7 +25,7 @@ export class OrderServiceImpl implements OrderService {
     const orderItems: OrderItem[] = [];
     const order = new Order();
     order.user = user;
-
+    order.orderStatus = 'pending';
     const totalPrices = await Promise.all(
       dto.vehicles.map(async (vehicleOrder) => {
         const vehicle = await this.vehicleRepository.findById(
@@ -70,7 +70,7 @@ export class OrderServiceImpl implements OrderService {
             product_data: {
               name: orderItem.vehicle.nome,
             },
-            unit_amout: orderItem.unitPrice,
+            unit_amount: orderItem.vehicle.preco,
           },
           quantity: orderItem.quantity,
         };
@@ -78,6 +78,9 @@ export class OrderServiceImpl implements OrderService {
       success_url: 'http://localhost:3000/payment/sucess',
       cancel_url: 'http://localhost:3000/payment/cancel',
     });
+    order.paymentIntentId = session.id;
+    order.paymentUrl = session.url;
+    this.orderRepository.update(order.id, order);
     const paymentDto = new PaymentDto();
     paymentDto.payment_url = session.url;
     return paymentDto;

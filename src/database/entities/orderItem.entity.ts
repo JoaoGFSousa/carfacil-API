@@ -8,18 +8,15 @@ export class OrderItem extends BaseEntity {
   @Column()
   id: number;
 
-  @Column()
+  @Column({ type: 'float' })
   unitPrice: number;
 
   @Column()
   quantity: number;
 
   @ManyToOne(() => Order, (order) => order.orderItems)
-  @Column()
   order: Order;
 
   @ManyToOne(() => Vehicle, (vehicle) => vehicle.orderItems)
-  @Column()
   vehicle: Vehicle;
-  static unitPrice: any;
 }

@@ -14,6 +14,7 @@ import { OrderService } from '../services/contracts/order.service';
 import { JwtAuth } from 'src/shared/decorators/jwt.auth';
 import { BodyValidated } from 'src/shared/decorators/body.validated';
 import { CreateOrderDto } from '../dto/create.order.dto';
+import { VehicleMapper } from '../mapper/vehicle.mapper';
 
 @Controller('/v1/order')
 export class OrderController {
@@ -24,7 +25,8 @@ export class OrderController {
   @JwtAuth()
   @BodyValidated()
   async createOrder(@Req() { user }: any, @Body() dto: CreateOrderDto) {
-    return this.orderService.createOrder(dto, user);
+    const order = await this.orderService.createOrder(dto, user);
+    return VehicleMapper.toOutDto(order);
   }
 
   @Post(':id/payment')
@@ -44,7 +46,8 @@ export class OrderController {
 
   @Get(':id')
   @HttpCode(HttpStatus.OK)
-  getById(@Param('id') id: number) {
-    return this.orderService.getById(id);
+  async getById(@Param('id') id: number) {
+    const order = await this.orderService.getById(id);
+    return VehicleMapper.toOutDto(order);
   }
 }

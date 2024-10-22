@@ -61,7 +61,7 @@ export class VehiclesController {
         `${randomUUID()}.${Arr.last(image[0].originalname.split('.'))}`,
       );
     }
-    return this.vehicleService.create(dto);
+    return this.vehicleService.create(dto, user);
   }
 
   @Put(':id')

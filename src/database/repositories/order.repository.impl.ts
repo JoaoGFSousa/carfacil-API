@@ -22,7 +22,7 @@ export class OrderRepositoryImpl extends OrderRepository {
   findById(id: number): Promise<Order | null> {
     return this.orderRepository.findOne({
       where: { id },
-      relations: ['user'],
+      relations: ['user', 'orderItems', 'orderItems.vehicle'],
     });
   }
 

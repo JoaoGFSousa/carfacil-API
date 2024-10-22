@@ -9,6 +9,10 @@ import { UserRepository } from './repositories/contracts/user.repository';
 import { UserRepositoryImpl } from './repositories/user.repository.impl';
 import { Order } from './entities/order.entity';
 import { OrderItem } from './entities/orderItem.entity';
+import { OrderItemRepository } from './repositories/contracts/orderItem.repository';
+import { OrderItemRepositoryImpl } from './repositories/orderItem.repository.impl';
+import { OrderRepository } from './repositories/contracts/order.repository';
+import { OrderRepositoryImpl } from './repositories/order.repository.impl';
 @Global()
 @Module({
   imports: [
@@ -36,7 +40,20 @@ import { OrderItem } from './entities/orderItem.entity';
       provide: UserRepository,
       useClass: UserRepositoryImpl,
     },
+    {
+      provide: OrderItemRepository,
+      useClass: OrderItemRepositoryImpl,
+    },
+    {
+      provide: OrderRepository,
+      useClass: OrderRepositoryImpl,
+    },
   ],
-  exports: [UserRepository, VehicleRepository],
+  exports: [
+    UserRepository,
+    VehicleRepository,
+    OrderItemRepository,
+    OrderRepository,
+  ],
 })
 export class DatabaseModule {}

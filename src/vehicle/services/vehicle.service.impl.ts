@@ -6,6 +6,7 @@ import { VehicleDto } from '../dto/vehicle.dto';
 import { VehicleMapper } from '../mapper/vehicle.mapper';
 import { UpdateVehicleDto } from '../dto/update.vehicle.dto';
 import { unlink } from 'node:fs/promises';
+import { User } from 'src/database/entities/user.entity';
 
 @Injectable()
 export class VehicleServiceImpl extends VehicleService {
@@ -16,10 +17,10 @@ export class VehicleServiceImpl extends VehicleService {
     super();
   }
 
-  async create(vehicle: CreateVehicleDto): Promise<VehicleDto> {
-    const vehicleSaved = await this.vehicleRepository.create(
-      VehicleMapper.createEntity(vehicle),
-    );
+  async create(vehicle: CreateVehicleDto, user: User): Promise<VehicleDto> {
+    const vehicleEntity = VehicleMapper.createEntity(vehicle);
+    vehicleEntity.user = user;
+    const vehicleSaved = await this.vehicleRepository.create(vehicleEntity);
     return new VehicleDto(vehicleSaved);
   }
 

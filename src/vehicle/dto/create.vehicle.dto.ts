@@ -37,4 +37,8 @@ export class CreateVehicleDto {
   @IsNumber()
   @IsNotEmpty()
   price: number;
+
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 }

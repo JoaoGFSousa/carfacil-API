@@ -8,10 +8,10 @@ export class Order extends BaseEntity {
   @Column()
   totalPrice: number;
 
-  @Column()
+  @Column({ nullable: true })
   paymentIntentId: string;
 
-  @Column()
+  @Column({ nullable: true })
   paymentUrl: string;
 
   @Column()
@@ -20,6 +20,6 @@ export class Order extends BaseEntity {
   @ManyToOne(() => User, (user) => user.orders)
   user: User;
 
-  @OneToMany(() => OrderItem, (OrderItem) => OrderItem.order)
+  @OneToMany(() => OrderItem, (OrderItem) => OrderItem.order, { cascade: true })
   orderItems: OrderItem[];
 }

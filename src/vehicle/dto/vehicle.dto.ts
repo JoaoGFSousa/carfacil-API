@@ -13,6 +13,8 @@ export class VehicleDto {
   image: string;
   imageUrl: string;
   price: number;
+  description: string;
+  preco: number;
 
   constructor(vehicle: Vehicle) {
     this.id = vehicle.id;
@@ -29,5 +31,7 @@ export class VehicleDto {
       this.imageUrl = `http://127.0.0.1:3000/${vehicle.image.replace('public/', '')}`;
       this.price = vehicle.preco;
     }
+    this.description = vehicle.description;
+    this.preco = vehicle.preco;
   }
 }

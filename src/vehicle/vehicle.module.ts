@@ -6,6 +6,7 @@ import { FileUploadServiceImpl } from './services/file.upload.service.impl';
 import { FileUploadService } from './services/contracts/file.upload.service';
 import { OrderService } from './services/contracts/order.service';
 import { OrderServiceImpl } from './services/order.service.impl';
+import { OrderController } from './controller/order.controller';
 
 @Module({
   providers: [
@@ -22,6 +23,6 @@ import { OrderServiceImpl } from './services/order.service.impl';
       useClass: OrderServiceImpl,
     },
   ],
-  controllers: [VehiclesController],
+  controllers: [VehiclesController, OrderController],
 })
 export class VehicleModule {}

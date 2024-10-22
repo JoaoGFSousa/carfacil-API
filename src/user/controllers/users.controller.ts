@@ -15,6 +15,7 @@ import { UsersService } from '../service/contracts/users.service';
 import { UserDto } from '../dto/user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { CreateUserDto } from '../dto/create-user.dto';
+import { JwtAuth } from 'src/shared/decorators/jwt.auth';
 
 @Controller('/v1/users')
 export class UsersControllers {
@@ -31,6 +32,7 @@ export class UsersControllers {
 
   @Put(':id')
   @HttpCode(HttpStatus.OK)
+  @JwtAuth()
   async update(
     @Param('id') id: number,
     @Body() updateUserDto: UpdateUserDto,

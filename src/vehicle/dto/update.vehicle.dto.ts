@@ -36,4 +36,8 @@ export class UpdateVehicleDto {
   @IsNumber()
   @IsOptional()
   price: number;
+
+  @IsString()
+  @IsOptional()
+  description: string;
 }
