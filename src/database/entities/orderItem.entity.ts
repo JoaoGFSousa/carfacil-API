@@ -21,4 +21,5 @@ export class OrderItem extends BaseEntity {
   @ManyToOne(() => Vehicle, (vehicle) => vehicle.orderItems)
   @Column()
   vehicle: Vehicle;
+  static unitPrice: any;
 }

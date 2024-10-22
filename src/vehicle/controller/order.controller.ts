@@ -31,8 +31,8 @@ export class OrderController {
   @HttpCode(HttpStatus.OK)
   @JwtAuth()
   @BodyValidated()
-  async createPayment(@Req() { user }: any, @Body() dto: CreateOrderDto) {
-    return this.orderService.createOrder(dto, user);
+  async createPayment(@Param('id') id: number) {
+    return this.orderService.payment(id);
   }
 
   @Delete(':id')
