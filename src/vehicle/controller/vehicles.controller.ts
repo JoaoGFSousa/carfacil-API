@@ -36,6 +36,13 @@ export class VehiclesController {
     return this.vehicleService.getAll();
   }
 
+  @Get(':id')
+  @HttpCode(HttpStatus.OK)
+  async getById(@Param('id') id: number) {
+    const vehicle = await this.vehicleService.getById(id);
+    return vehicle;
+  }
+
   @Post()
   @HttpCode(HttpStatus.CREATED)
   @JwtAuth()

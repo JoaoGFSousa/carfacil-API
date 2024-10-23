@@ -11,7 +11,7 @@ export class VehicleDto {
   cilindradas: number;
   combustivel: string;
   image: string;
-  imageUrl: string;
+  img: string;
   price: number;
   description: string;
   preco: number;
@@ -28,7 +28,7 @@ export class VehicleDto {
     this.combustivel = vehicle.combustivel;
     this.image = vehicle.image;
     if (vehicle.image) {
-      this.imageUrl = `http://127.0.0.1:3000/${vehicle.image.replace('public/', '')}`;
+      this.img = `http://127.0.0.1:3000/${vehicle.image.replace('public/', '')}`;
       this.price = vehicle.preco;
     }
     this.description = vehicle.description;

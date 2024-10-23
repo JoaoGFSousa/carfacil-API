@@ -75,8 +75,8 @@ export class OrderServiceImpl implements OrderService {
           quantity: orderItem.quantity,
         };
       }),
-      success_url: 'http://localhost:3000/payment/sucess',
-      cancel_url: 'http://localhost:3000/payment/cancel',
+      success_url: 'http://localhost:3001/payment/success',
+      cancel_url: 'http://localhost:3001/payment/cancel',
     });
     order.paymentIntentId = session.id;
     order.paymentUrl = session.url;

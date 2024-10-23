@@ -7,6 +7,7 @@ import { User } from 'src/database/entities/user.entity';
 import { randomUUID } from 'crypto';
 import { PasswordEncoder } from 'src/user/service/contracts/password-encoder.service';
 import { AuthRequestDto } from '../dto/auth.request.dto';
+import { UserDto } from 'src/user/dto/user.dto';
 
 @Injectable()
 export class AuthServiceImpl extends AuthService {
@@ -33,7 +34,7 @@ export class AuthServiceImpl extends AuthService {
       throw new UnauthorizedException('Usúario ou senha inválidos');
     const token = await this.signToken(user);
 
-    return new AuthResponseDto(token, 'Bearer');
+    return new AuthResponseDto(token, 'Bearer', new UserDto(user));
   }
   async signToken(user: User): Promise<string> {
     return this.jwtService.signAsync(
